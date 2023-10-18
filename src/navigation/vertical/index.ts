@@ -1,17 +1,19 @@
 // ** Icon imports
-import Login from 'mdi-material-ui/Login'
-import Table from 'mdi-material-ui/Table'
-import CubeOutline from 'mdi-material-ui/CubeOutline'
-import HomeOutline from 'mdi-material-ui/HomeOutline'
-import FormatLetterCase from 'mdi-material-ui/FormatLetterCase'
 import AccountCogOutline from 'mdi-material-ui/AccountCogOutline'
 import CreditCardOutline from 'mdi-material-ui/CreditCardOutline'
-import AccountPlusOutline from 'mdi-material-ui/AccountPlusOutline'
-import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline'
+import Fruit from 'mdi-material-ui/FruitCherries'
+import Blog from 'mdi-material-ui/NewBox'
+import Garden from 'mdi-material-ui/Shovel'
+
+import CubeOutline from 'mdi-material-ui/CubeOutline'
+import FormatLetterCase from 'mdi-material-ui/FormatLetterCase'
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended'
+import HomeOutline from 'mdi-material-ui/HomeOutline'
+import Table from 'mdi-material-ui/Table'
 
 // ** Type import
 import { VerticalNavItemsType } from 'src/@core/layouts/types'
+import { LANG_BLOG, LANG_FRUIT, LANG_GARDEN } from 'src/constants/convertLang'
 
 const navigation = (): VerticalNavItemsType => {
   return [
@@ -29,22 +31,22 @@ const navigation = (): VerticalNavItemsType => {
       sectionTitle: 'Pages'
     },
     {
-      title: 'Login',
-      icon: Login,
-      path: '/login',
-      openInNewTab: true
+      title: LANG_GARDEN.GARDEN_MANAGEMENT,
+      icon: Garden,
+      path: '/garden',
+      openInNewTab: false
     },
     {
-      title: 'Register',
-      icon: AccountPlusOutline,
-      path: '/pages/register',
-      openInNewTab: true
+      title: LANG_FRUIT.FRUIT_MANAGEMENT,
+      icon: Fruit,
+      path: '/fruit',
+      openInNewTab: false
     },
     {
-      title: 'Error',
-      icon: AlertCircleOutline,
-      path: '/pages/error',
-      openInNewTab: true
+      title: LANG_BLOG.BLOG_MANAGEMENT,
+      icon: Blog,
+      path: '/blog',
+      openInNewTab: false
     },
     {
       sectionTitle: 'User Interface'

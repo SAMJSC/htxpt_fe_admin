@@ -46,7 +46,7 @@ const MenuNavLink = styled(ListItemButton)<
   transition: 'opacity .25s ease-in-out',
   '&.active, &.active:hover': {
     boxShadow: theme.shadows[3],
-    backgroundImage: `linear-gradient(98deg, ${theme.palette.customColors.primaryGradient}, ${theme.palette.primary.main} 94%)`
+    backgroundImage: `linear-gradient(270deg, #699C3A 0%, rgba(105, 156, 58, 0.50) 100%, #699C3A 100%)`
   },
   '&.active .MuiTypography-root, &.active .MuiSvgIcon-root': {
     color: `${theme.palette.common.white} !important`
@@ -69,7 +69,8 @@ const VerticalNavLink = ({ item, navVisible, toggleNavVisibility }: Props) => {
   const IconTag: ReactNode = item.icon
 
   const isNavLinkActive = () => {
-    if (router.pathname === item.path || handleURLQueries(router, item.path)) {
+
+    if (router.pathname === item.path || handleURLQueries(router, item.path) || (router.pathname.includes(item.path as any) && item.path !== '/')) {
       return true
     } else {
       return false

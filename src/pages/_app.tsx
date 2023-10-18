@@ -1,37 +1,41 @@
 // ** Next Imports
-import Head from 'next/head'
-import { Router } from 'next/router'
-import type { NextPage } from 'next'
-import type { AppProps } from 'next/app'
+import type { NextPage } from 'next';
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import { Router } from 'next/router';
+import { SnackbarProvider } from 'notistack';
 
 // ** Loader Import
-import NProgress from 'nprogress'
+import NProgress from 'nprogress';
 
 // ** Emotion Imports
-import { CacheProvider } from '@emotion/react'
-import type { EmotionCache } from '@emotion/cache'
+import type { EmotionCache } from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 
 // ** Config Imports
-import themeConfig from 'src/configs/themeConfig'
+import themeConfig from 'src/configs/themeConfig';
 
 // ** Component Imports
-import UserLayout from 'src/layouts/UserLayout'
-import ThemeComponent from 'src/@core/theme/ThemeComponent'
+import ThemeComponent from 'src/@core/theme/ThemeComponent';
+import UserLayout from 'src/layouts/UserLayout';
 
 // ** Contexts
-import { SettingsConsumer, SettingsProvider } from 'src/@core/context/settingsContext'
+import { SettingsConsumer, SettingsProvider } from 'src/@core/context/settingsContext';
 
 // ** Utils Imports
-import { createEmotionCache } from 'src/@core/utils/create-emotion-cache'
+import { createEmotionCache } from 'src/@core/utils/create-emotion-cache';
 
 // ** React Perfect Scrollbar Style
-import 'react-perfect-scrollbar/dist/css/styles.css'
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 // ** Global css styles
-import '../../styles/globals.css'
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { withAuth } from 'src/@core/guards/AuthGuard';
+import '../../styles/globals.css';
+import '../../styles/main.css'
 
 // ** Extend App Props with Emotion
-type ExtendedAppProps = AppProps & {
+export type ExtendedAppProps = AppProps & {
   Component: NextPage
   emotionCache: EmotionCache
 }
@@ -50,6 +54,7 @@ if (themeConfig.routingLoader) {
     NProgress.done()
   })
 }
+const queryClient = new QueryClient();
 
 // ** Configure JSS & ClassName
 const App = (props: ExtendedAppProps) => {
@@ -61,7 +66,7 @@ const App = (props: ExtendedAppProps) => {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>{`${themeConfig.templateName} - Material Design React Admin Template`}</title>
+        <title>{`HTXPT - CMS`}</title>
         <meta
           name='description'
           content={`${themeConfig.templateName} – Material Design React Admin Dashboard Template – is the most developer friendly & highly customizable Admin Dashboard Template based on MUI v5.`}
@@ -71,14 +76,20 @@ const App = (props: ExtendedAppProps) => {
       </Head>
 
       <SettingsProvider>
-        <SettingsConsumer>
-          {({ settings }) => {
-            return <ThemeComponent settings={settings}>{getLayout(<Component {...pageProps} />)}</ThemeComponent>
-          }}
-        </SettingsConsumer>
+        <QueryClientProvider client={queryClient}>
+          <SnackbarProvider>
+            {/* <AuthGuard> */}
+            <SettingsConsumer>
+              {({ settings }) => {
+                return <ThemeComponent settings={settings}>{getLayout(<Component {...pageProps} />)}</ThemeComponent>
+              }}
+            </SettingsConsumer>
+            {/* </AuthGuard> */}
+          </SnackbarProvider>
+        </QueryClientProvider>
       </SettingsProvider>
     </CacheProvider>
   )
 }
 
-export default App
+export default withAuth(App)
