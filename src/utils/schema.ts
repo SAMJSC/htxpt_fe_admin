@@ -1,6 +1,8 @@
 import { LANG_BLOG, LANG_FRUIT, LANG_GARDEN, LANG_MESS } from "src/constants/convertLang";
 import * as yup from "yup"
 
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
 export const schema = yup.object({
     firstName: yup.string().required("Full Name is required"),
     email: yup.string().required("Email is required").email("This is don't email"),
@@ -33,7 +35,7 @@ export const schemaBlog = yup.object({
 export const schemaGarden = yup.object({
     first_name: yup.string().required(`${LANG_GARDEN.FIRST_NAME} ${LANG_MESS.REQUIRED}`),
     last_name: yup.string().required(`${LANG_GARDEN.LAST_NAME} ${LANG_MESS.REQUIRED}`),
-    phone: yup.string().required(`${LANG_GARDEN.PHONE} ${LANG_MESS.REQUIRED}`),
+    phone: yup.string().required(`${LANG_GARDEN.PHONE} ${LANG_MESS.REQUIRED}`).length(10, LANG_MESS.PHONE_VALIDATE),
     password: yup.string().required(`${LANG_GARDEN.PASS_WORD} ${LANG_MESS.REQUIRED}`),
     confirm_password: yup.string().required(`${LANG_GARDEN.CF_PASS_WORD} ${LANG_MESS.REQUIRED}`).oneOf([yup.ref('password'), ''], LANG_MESS.MES_CFPASS_MATCH),
 

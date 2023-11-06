@@ -29,9 +29,11 @@ const GardenForm = ({ data }: any) => {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (dataBlog) => {
+    const convertPhone = dataBlog.phone.replace(/^0/, "+84")
     const param = {
       ...dataBlog,
-      date_of_birth: formatBirth(date)
+      date_of_birth: formatBirth(date),
+      phone: convertPhone
     }
     onCreateGarden(param)
   };
@@ -45,6 +47,7 @@ const GardenForm = ({ data }: any) => {
               fullWidth
               {...register("first_name")}
               multiline
+              required
               label={LANG_GARDEN.FIRST_NAME}
               placeholder={LANG_GARDEN.FIRST_NAME}
               defaultValue={data?.title}
@@ -65,20 +68,16 @@ const GardenForm = ({ data }: any) => {
                 date={date}
                 setDate={setDate}
                 setValue={setValue}
-                label='Birth'
+                label={LANG_GARDEN.DATE}
               />
             </Grid>
-            {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={['DatePicker']}>
-                <DatePicker label="Basic date picker"/>
-              </DemoContainer>
-            </LocalizationProvider> */}
           </Grid>
           <Grid item xs={6}>
             <TextField
               fullWidth
               {...register("last_name")}
               multiline
+              required
               label={LANG_GARDEN.LAST_NAME}
               placeholder={LANG_GARDEN.LAST_NAME}
               defaultValue={data?.title}
@@ -97,6 +96,7 @@ const GardenForm = ({ data }: any) => {
               fullWidth
               {...register("phone")}
               multiline
+              required
               label={LANG_GARDEN.PHONE}
               placeholder={LANG_GARDEN.PHONE}
               defaultValue={data?.title}
@@ -115,6 +115,7 @@ const GardenForm = ({ data }: any) => {
               fullWidth
               label={LANG_GARDEN.PASS_WORD}
               {...register("password")}
+              required
               type={showPass ? 'text' : 'password'}
               InputProps={{
                 style: { width: '100%' },
@@ -136,6 +137,7 @@ const GardenForm = ({ data }: any) => {
           <Grid item xs={6}>
             <TextField
               fullWidth
+              required
               label={LANG_GARDEN.CF_PASS_WORD}
               {...register("confirm_password")}
               type={showCfPass ? 'text' : 'password'}

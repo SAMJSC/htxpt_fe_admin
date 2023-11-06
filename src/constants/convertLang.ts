@@ -89,8 +89,9 @@ export const LANG_MESS = {
     MES_DEL_BLOG_SUCCESS: 'Xóa bài viết thành công !',
     MES_DEL_BLOG_ERROR: 'Xóa bài viết thất bại !',
     MES_CREATE_GARDEN_SUCCESS: 'Tạo nhà vườn thành công !',
-    MES_CREATE_GARDEN_ERR: 'Tạo nhà vườn thất bại !',
+    MES_CREATE_GARDEN_ERR: 'Tạo nhà vườn thất bại. Hãy kiểm tra giá trị nhập vào các trường !',
     MES_CFPASS_MATCH: 'Mật khẩu nhập lại phải giống với mật khẩu vừa đặt',
+    PHONE_VALIDATE: 'Số điện thoại không hợp lệ'
 }
 export const LANG_GARDEN = {
     ACTION: 'Hoạt động',
@@ -117,6 +118,7 @@ export const LANG_BLOG = {
     BLOG_DETAIL : 'Chi Tiết Bài Viết',
     BLOG_CREATE : 'Tạo các bài viết',
     BTN_CREATE : 'Tạo bài viết',
+    BTN_EDIT : 'Sửa bài viết',
     BLOG_NAME: 'Tên bài viết',
     DATE: 'Ngày viết',
     TITLE: 'Tiêu đề',

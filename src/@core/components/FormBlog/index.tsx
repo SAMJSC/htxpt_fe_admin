@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Button, CardContent, Grid, InputAdornment, TextField, Typography } from '@mui/material'
+import _ from 'lodash'
 import { AccountOutline, MessageOutline } from 'mdi-material-ui'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useBlogCreate } from 'src/@core/components/BlogCreate/hooks'
@@ -19,7 +20,6 @@ const BlogForm = ({ data, isEdit }: any) => {
   const { register, handleSubmit, formState: { errors } } = useForm<IFormInput | any>({
     resolver: yupResolver(schemaBlog)
   });
-  console.log(data?.title);
 
   const onSubmit: SubmitHandler<IFormInput> = (dataBlog) => {
     const param = {
@@ -46,7 +46,7 @@ const BlogForm = ({ data, isEdit }: any) => {
               multiline
               label={LANG_BLOG.BLOG_NAME}
               placeholder={LANG_BLOG.BLOG_NAME}
-              defaultValue={data?.title}
+              defaultValue={!_.isEmpty(data) && data?.title}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position='start'>
@@ -66,7 +66,7 @@ const BlogForm = ({ data, isEdit }: any) => {
               minRows={3}
               label={LANG_BLOG.CONTENT}
               placeholder={LANG_BLOG.CONTENT}
-              defaultValue={data?.content}
+              defaultValue={!_.isEmpty(data) && data?.content}
               sx={{ '& .MuiOutlinedInput-root': { alignItems: 'baseline' } }}
               InputProps={{
                 startAdornment: (
@@ -86,7 +86,7 @@ const BlogForm = ({ data, isEdit }: any) => {
               minRows={3}
               label={LANG_BLOG.DESCRIPTION}
               placeholder={LANG_BLOG.DESCRIPTION}
-              defaultValue={data?.short_description}
+              defaultValue={!_.isEmpty(data) && data?.short_description}
               sx={{ '& .MuiOutlinedInput-root': { alignItems: 'baseline' } }}
               InputProps={{
                 startAdornment: (
@@ -101,7 +101,7 @@ const BlogForm = ({ data, isEdit }: any) => {
 
           <Grid item xs={12} textAlign='center'>
             <Button type='submit' variant='contained' color='success' size='large'>
-              {LANG_BLOG.BTN_CREATE}
+              {!isEdit ? LANG_BLOG.BTN_CREATE : LANG_BLOG.BTN_EDIT}
             </Button>
           </Grid>
         </Grid>

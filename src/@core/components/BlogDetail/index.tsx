@@ -1,4 +1,5 @@
 import { Button, Card, CardHeader, Grid } from '@mui/material';
+import _ from 'lodash';
 import { Backburger } from 'mdi-material-ui';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -21,7 +22,7 @@ const FruitDetailPage = ({ id }: { id: string }) => {
         <Button color="success" variant="outlined" startIcon={<Backburger />} onClick={() => router.push(routerURL.BLOG)}>{LANG_COMMON.BACK}</Button>
         <CardHeader title={LANG_BLOG.BLOG_DETAIL} titleTypographyProps={{ variant: 'h6' }} style={{ padding: 10 }} />
       </Grid>
-      <BlogForm data={data} isEdit />
+      {!_.isEmpty(data) &&  <BlogForm data={data} isEdit />}
     </Card>
   )
 }
