@@ -36,7 +36,8 @@ export const schemaGarden = yup.object({
     first_name: yup.string().required(`${LANG_GARDEN.FIRST_NAME} ${LANG_MESS.REQUIRED}`),
     last_name: yup.string().required(`${LANG_GARDEN.LAST_NAME} ${LANG_MESS.REQUIRED}`),
     phone: yup.string().required(`${LANG_GARDEN.PHONE} ${LANG_MESS.REQUIRED}`).length(10, LANG_MESS.PHONE_VALIDATE),
-    password: yup.string().required(`${LANG_GARDEN.PASS_WORD} ${LANG_MESS.REQUIRED}`),
+    password: yup.string().required(`${LANG_GARDEN.PASS_WORD} ${LANG_MESS.REQUIRED}`).min(8, LANG_MESS.MES_PASS_LENGHT)
+    .matches(/[a-zA-Z]/, LANG_MESS.MES_PASS_MATCH),
     confirm_password: yup.string().required(`${LANG_GARDEN.CF_PASS_WORD} ${LANG_MESS.REQUIRED}`).oneOf([yup.ref('password'), ''], LANG_MESS.MES_CFPASS_MATCH),
 
 }).required();

@@ -89,8 +89,11 @@ export const LANG_MESS = {
     MES_DEL_BLOG_SUCCESS: 'Xóa bài viết thành công !',
     MES_DEL_BLOG_ERROR: 'Xóa bài viết thất bại !',
     MES_CREATE_GARDEN_SUCCESS: 'Tạo nhà vườn thành công !',
-    MES_CREATE_GARDEN_ERR: 'Tạo nhà vườn thất bại. Hãy kiểm tra giá trị nhập vào các trường !',
+    MES_CREATE_GARDEN_ERR: 'Tạo nhà vườn thất bại. Hãy kiểm tra giá trị nhập vào các trường ! (Có thể mật khẩu quá yếu)',
     MES_CFPASS_MATCH: 'Mật khẩu nhập lại phải giống với mật khẩu vừa đặt',
+    MES_PASS_LENGHT: 'Mật khẩu phải chứa ít nhất 8 kí tự',
+    MES_PASS_MATCH: 'Mật khẩu phải chứa kí tự đặc biệt và chữ hoa(ví dụ: 123@Abc)',
+
     PHONE_VALIDATE: 'Số điện thoại không hợp lệ'
 }
 export const LANG_GARDEN = {

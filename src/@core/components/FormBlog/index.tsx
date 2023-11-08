@@ -46,7 +46,7 @@ const BlogForm = ({ data, isEdit }: any) => {
               multiline
               label={LANG_BLOG.BLOG_NAME}
               placeholder={LANG_BLOG.BLOG_NAME}
-              defaultValue={!_.isEmpty(data) && data?.title}
+              defaultValue={!_.isEmpty(data) ? data?.title : ''}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position='start'>
@@ -66,7 +66,7 @@ const BlogForm = ({ data, isEdit }: any) => {
               minRows={3}
               label={LANG_BLOG.CONTENT}
               placeholder={LANG_BLOG.CONTENT}
-              defaultValue={!_.isEmpty(data) && data?.content}
+              defaultValue={!_.isEmpty(data) ? data?.content : ''}
               sx={{ '& .MuiOutlinedInput-root': { alignItems: 'baseline' } }}
               InputProps={{
                 startAdornment: (
@@ -86,7 +86,7 @@ const BlogForm = ({ data, isEdit }: any) => {
               minRows={3}
               label={LANG_BLOG.DESCRIPTION}
               placeholder={LANG_BLOG.DESCRIPTION}
-              defaultValue={!_.isEmpty(data) && data?.short_description}
+              defaultValue={!_.isEmpty(data) ? data?.short_description : ''}
               sx={{ '& .MuiOutlinedInput-root': { alignItems: 'baseline' } }}
               InputProps={{
                 startAdornment: (

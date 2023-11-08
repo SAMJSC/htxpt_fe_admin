@@ -28,8 +28,8 @@ export const withAuth = (WrappedComponent: any) => {
 
         if (isAuthenticated) {
           try {
-            const res = await loginServices.handleRefreshToken({ refreshToken: refresh_token });            
-            if (res?.data?.statusCode === HTTP_STATUS_CONTSTANTS.ERROR_CODE_401) {
+            const res = await loginServices.handleRefreshToken({ refreshToken: refresh_token });    
+            if (res?.statusCode === HTTP_STATUS_CONTSTANTS.ERROR_CODE_401) {
 
               Cookies.remove(KEY_STORAGE.TOKEN)
               Cookies.remove(KEY_STORAGE.REFRESH_TOKEN)
@@ -40,7 +40,7 @@ export const withAuth = (WrappedComponent: any) => {
             }
             else {
               const token = res?.data?.data?.session?.accessToken;
-
+              
               Cookies.set(KEY_STORAGE.TOKEN, token, { sameSite: 'strict' });
             }
 

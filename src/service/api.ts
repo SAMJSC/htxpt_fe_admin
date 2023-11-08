@@ -3,6 +3,8 @@ import Cookies from "js-cookie";
 import { KEY_STORAGE } from "src/constants/common";
 import HTTP_STATUS_CONTSTANTS from 'src/constants/httpStatus';
 import TYPE_CONSTANTS from "src/constants/type";
+import { routerURL } from "src/navigation/router";
+import loginServices from "src/service/login";
 import validate from "src/utils/validate";
 
 
@@ -42,6 +44,33 @@ export const checkSuccessRequest = (response: any) => {
   return response?.statusCode < HTTP_STATUS_CONTSTANTS.ERROR;
 };
 
+// const checkRefreshToken = async () => {
+//   const refresh_token = Cookies.get(KEY_STORAGE.REFRESH_TOKEN);
+
+//   try {
+//     const res = await loginServices.handleRefreshToken({ refreshToken: refresh_token });
+//     if (res?.statusCode === HTTP_STATUS_CONTSTANTS.ERROR_CODE_401) {
+
+//       Cookies.remove(KEY_STORAGE.TOKEN)
+//       Cookies.remove(KEY_STORAGE.REFRESH_TOKEN)
+//       if (typeof window !== "undefined") {
+//         // Client-side-only code
+//         window.location.replace(routerURL.LOGIN)
+//       }
+
+//       return false;
+
+//     }
+//     else {
+//       const token = res?.data?.data?.session?.accessToken;
+
+//       Cookies.set(KEY_STORAGE.TOKEN, token, { sameSite: 'strict' });
+//     }
+
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 const checkErrorStatus = (
   response: any,
   options?: {
@@ -51,11 +80,12 @@ const checkErrorStatus = (
 
   if (response?.status >= HTTP_STATUS_CONTSTANTS.ERROR && !excludeResponse.includes(response?.data?.code)) {
     Cookies.set(KEY_STORAGE.CODE_TOKEN, response?.status);
-    
+
     if (HTTP_STATUS_CONTSTANTS.SERVER_ERROR !== response?.status) {
       const resErr = response?.data?.message
+      const statusCode = response?.status
 
-      return { typeOfMessage, resErr }
+      return { typeOfMessage, resErr, statusCode }
     } else {
       !options?.isHideErrorMessage;
     }

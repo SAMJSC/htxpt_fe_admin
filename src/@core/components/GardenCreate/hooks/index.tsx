@@ -36,7 +36,7 @@ export const useGardenCreate = () => {
         else {
           enqueueSnackbar(LANG_MESS.MES_CREATE_GARDEN_ERR, {
             variant: 'error',
-            autoHideDuration: 2000,
+            autoHideDuration: 3000,
           });
         }
       },
