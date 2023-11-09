@@ -18,12 +18,14 @@ jobs:
       - name: 🔨 Build Project
         run: |
           npm cache clean --force
-          npm install --global yarn
-          yarn add cheerio@latest
-          yarn install
-          yarn build
-          # npm install --legacy-peer-deps --force
-          # npm run build
+          # npm install --global yarn
+    
+          # yarn install
+          # yarn build
+          npm ci
+          npm install --legacy-peer-deps --force
+          npm run build
+          npm run export
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
