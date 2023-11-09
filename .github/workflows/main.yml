@@ -19,6 +19,7 @@ jobs:
         run: |
           npm cache clean --force
           npm install --global yarn
+          yarn add cheerio@latest
           yarn install
           yarn build
           # npm install --legacy-peer-deps --force
