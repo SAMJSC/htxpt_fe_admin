@@ -1,19 +1,17 @@
-const path = require('path')
+import { resolve } from 'path'
 
-module.exports = {
-  trailingSlash: true,
-  reactStrictMode: false,
-  swcMinify: false,
-  experimental: {
-    esmExternals: false,
-    jsconfigPaths: true // enables it for both jsconfig.json and tsconfig.json
-  },
-  webpack: config => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      apexcharts: path.resolve(__dirname, './node_modules/apexcharts-clevision')
-    }
-
-    return config
+export const trailingSlash = true
+export const reactStrictMode = false
+export const swcMinify = false
+export const experimental = {
+  esmExternals: false,
+  jsconfigPaths: true // enables it for both jsconfig.json and tsconfig.json
+}
+export function webpack(config) {
+  config.resolve.alias = {
+    ...config.resolve.alias,
+    apexcharts: resolve(__dirname, './node_modules/apexcharts-clevision')
   }
+
+  return config
 }
