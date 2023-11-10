@@ -17,15 +17,14 @@ jobs:
 
       - name: 🔨 Build Project
         run: |
-          npm cache clean --force
-          # npm install --global yarn
-    
-          # yarn install
-          # yarn build
+          
+          npm install --global yarn
+          yarn cache clean --force
+          yarn install
+          yarn build
 
-          npm install --legacy-peer-deps --force
-          npm run build
-          npm run export
+          # npm install --legacy-peer-deps --force
+          # npm run build
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
