@@ -1,5 +1,5 @@
 export const KEY_STORAGE = {
-  TOKEN: 'cookies-token',
+  TOKEN: 'access-token',
   REFRESH_TOKEN: 'refresh-token',
   CODE_TOKEN: 'code-token'
 };

@@ -14,6 +14,8 @@ export const withAuth = (WrappedComponent: any) => {
     let pathLocal = '';
 
     const isAuthenticated = Cookies.get(KEY_STORAGE.TOKEN);
+    console.log("isAuthenticated: ",isAuthenticated);
+    
     const codeToken = Cookies.get(KEY_STORAGE.CODE_TOKEN);
     const refresh_token = Cookies.get(KEY_STORAGE.REFRESH_TOKEN);
 
